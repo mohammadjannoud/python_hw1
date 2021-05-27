@@ -1,24 +1,24 @@
-class Veicle:
+class Vehicle:
     count=0
     cars=[]
     def __init__(self,_type,_mark,_wheels):
         self.type=_type
         self.mark=_mark
         self.wheels=_wheels
-        Veicle.count+=1
-        Veicle.cars.append(self)
+        Vehicle.count+=1
+        Vehicle.cars.append(self)
 
     def drive(self,distance,speed=60):
         print("Drive {0} Km with speed {1} Km/h".format(distance,speed))
 
     def printCarsDetails():
-        print("Total Number of cars",Veicle.count)
-        for c in Veicle.cars:
+        print("Total Number of cars",Vehicle.count)
+        for c in Vehicle.cars:
             c.print()
 
-class Car(Veicle):
+class Car(Vehicle):
     def __init__(self,_type,_mark,_wheels,_fuel_capacity=100):
-        Veicle.__init__(self,_type,_mark,_wheels)
+        Vehicle.__init__(self,_type,_mark,_wheels)
         self.fuel_capacity=_fuel_capacity
         self.fuel_level=_fuel_capacity
 
@@ -30,7 +30,7 @@ class Car(Veicle):
         if fuel>self.fuel_level:
             print("Can't drive {0} Km no enough fuel!".format(distance))
         else:
-            Veicle.drive(self,distance,speed)
+            Vehicle.drive(self,distance,speed)
             self.fuel_level-=fuel
             print("The remaining fuel: {0} L".format(self.fuel_level))
 
@@ -42,9 +42,9 @@ class Car(Veicle):
     def print(self):
         print("Type: {0}, Mark: {1}, Wheels: {2}, Capacity: {3}, Fuel: {4}".format(self.type,self.mark,self.wheels,self.fuel_capacity,self.fuel_level))
 
-class ElectricCar(Veicle):
+class ElectricCar(Vehicle):
     def __init__(self,_type,_mark,_wheels):
-        Veicle.__init__(self,_type,_mark,_wheels)
+        Vehicle.__init__(self,_type,_mark,_wheels)
         self.battery_level=100
 
     def drive(self,distance,speed=60):
@@ -55,7 +55,7 @@ class ElectricCar(Veicle):
         if battery>self.battery_level:
             print("Can't drive {0} Km no enough battery charge!".format(distance))
         else:
-            Veicle.drive(self,distance,speed)
+            Vehicle.drive(self,distance,speed)
             self.battery_level-=battery
             print("The battery charge level: {0}%".format(self.battery_level))
 
@@ -70,7 +70,7 @@ c1=Car('RIO','KIA',4)
 c2=Car('Corolla','Toyota',4,150)
 c3=ElectricCar('Tesla','Tesla',4)
 
-Veicle.printCarsDetails()
+Vehicle.printCarsDetails()
 
 print("\n\n######### First Car #########")
 
@@ -95,4 +95,4 @@ c3.charge()
 c3.drive(100,120)
      
 print("\n\n#############################")
-Veicle.printCarsDetails()
+Vehicle.printCarsDetails()
